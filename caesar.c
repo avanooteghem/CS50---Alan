@@ -28,7 +28,6 @@ bool checkdigit (string key)
 {
     // Es al pedo que esta funcion lleve la cuenta de la cantidad de numeros. Podes usar un bool que pasa a ser false
     // en la iteracion en la que te encontras con algo distinto de un numero (o directamente un return false)
-    return true;
     for (int i = 0 ; i < strlen(key) ; i++) //que sean solo numeros
     {
         if (isdigit(key[i]))
@@ -39,6 +38,7 @@ bool checkdigit (string key)
             return false;
         }
     }
+    return true;
 }
 
 void checkletter (string word, int key)
@@ -49,11 +49,11 @@ void checkletter (string word, int key)
         {
             if isupper(word[i])
             {
-                printletter(word[i],64,90,key);
+                printf("%c",(word[i] - 65 + key) % 26 + 65);
             }
             else if (islower(word[i]))
             {
-                printletter(word[i],96,122,key);
+                printf("%c",(word[i] - 97 + key) % 26 + 97);
             }
         }
         else
@@ -63,22 +63,4 @@ void checkletter (string word, int key)
 
     }
     printf("\n");
-}
-
-void printletter (char letter, int start, int limit,int key)
-{
-    int newletter = letter + key;
-    if (newletter > limit)
-    {
-           while (newletter > limit)
-            {
-            int difference = newletter - limit;
-            newletter = start + difference;
-            }
-            printf ("%c",newletter);
-    }
-    else
-    {
-        printf("%c",newletter);
-    }
 }
